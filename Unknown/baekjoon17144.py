@@ -11,13 +11,16 @@ for k in range(r):
         tempRoom[k].append(0)
         if room[k][i] == -1:
             aircleaner.append(k)
-        if room[k][i] > 0:
-            dusts.append((k, i))
 
 dy = [0, 0, 1, -1]             
 dx = [1, -1, 0, 0]
 
 def diffusion():
+    dusts = []
+    for y in range(r):
+        for x in range(c):
+            if room[y][x] > 0:
+                dusts.append((y, x))
     change = set()
     for dustY, dustX in dusts:
         mainDust = room[dustY][dustX] 
@@ -28,14 +31,11 @@ def diffusion():
                 change.add((dustY + dy[i], dustX + dx[i]))
                 room[dustY][dustX] -= moveDust
     for dustY, dustX in change:
-        if room[dustY][dustX] == 0:
-            dusts.append((dustY, dustX))
         room[dustY][dustX] = room[dustY][dustX] + tempRoom[dustY][dustX]
         tempRoom[dustY][dustX] = 0
 def air():
-    #TODO: 여기가 문제. 먼지 흩뿌리는 부분은 문제 없음
     change = []
-    locateX = 음
+    locateX = 1
     locateY = aircleaner[0]
     while locateX <= c - 2:
         tempRoom[locateY][locateX + 1] = room[locateY][locateX] 
@@ -55,6 +55,8 @@ def air():
         locateY += 1
     for y, x in change:
         room[y][x] = tempRoom[y][x]
+        tempRoom[y][x] = 0
+    tempRoom[aircleaner[0]][0] = -1
     room[aircleaner[0]][0] = -1
     room[aircleaner[0]][1] = 0
 
@@ -73,23 +75,26 @@ def air():
         tempRoom[locateY][locateX - 1] = room[locateY][locateX] 
         change.append((locateY, locateX - 1))
         locateX -= 1
-    while locateY >= aircleaner[1] - 1:
+    while locateY >= aircleaner[1] + 1:
         tempRoom[locateY - 1][locateX] = room[locateY][locateX]
         change.append((locateY - 1, locateX))
         locateY -= 1
     for y, x in change:
         room[y][x] = tempRoom[y][x]
+        tempRoom[y][x] = 0
+    tempRoom[aircleaner[1]][0] = -1
     room[aircleaner[1]][0] = -1
     room[aircleaner[1]][1] = 0
-    for j in room:
-        print(j)
-    print("-------------------------")
 
 for i in range(t):
     diffusion() 
     air()
-    #for k in room:
-    #    print(k)
+cnt = 0
+for y in room:
+    for j in y:
+        if j > 0:
+            cnt += j
+print(cnt)
 
 
 

@@ -1,1 +1,0 @@
-{"name":"Local: baekjoon11054","url":"/home/wkdeogks/Algorithm/DP/baekjoon11054.py","tests":[{"id":1639147652166,"input":"10\n1 5 2 1 4 3 4 5 2 1","output":"7"},{"id":1639148787999,"input":"1\n1","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/wkdeogks/Algorithm/DP/baekjoon11054.py","group":"local","local":true}

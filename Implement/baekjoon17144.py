@@ -1,3 +1,4 @@
+# [Gold 4] 미세먼지 안녕!
 import sys
 r, c, t = map(int, sys.stdin.readline().split())
 room = []

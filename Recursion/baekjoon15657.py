@@ -1,3 +1,4 @@
+# [Silver 3] N과 M (8)
 import sys
 n, m = map(int, sys.stdin.readline().split())
 seq = list(map(int, sys.stdin.readline().rstrip().split()))

@@ -1,5 +1,4 @@
 # [Gold 4] 단어 수학
-# TODO: 재귀를 이용해 알파벳과 단어를 일치시키는 방식으로 수정해보기
 possible = [i for i in range(10)]
 combine = [[] for _ in range(8)]
 alphaCnt = [0 for i in range(26)]

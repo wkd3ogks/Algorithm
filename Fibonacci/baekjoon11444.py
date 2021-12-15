@@ -19,4 +19,4 @@ def fibonacci3(n):
         else:
             temp = fibonacci3((n - 1) // 2)
             return matrixProduct(matrixProduct(temp, temp), matrix)
-print(fibonacci3(n)[0][1] )
+print(fibonacci3(n)[0][1])

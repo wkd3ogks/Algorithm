@@ -17,7 +17,8 @@ def solve(height, width, y, x):
         solve(height // 2, width // 2, y + height // 2, x + height)
     
 solve(n, 2 * n, 0, 0)
-for i in realMap:
-    for char in i:
-        print(char,end='')
-    print()
+for y in range(n):
+    string = ''
+    for x in range(2 * n):
+        string += realMap[y][x]
+    print(string)

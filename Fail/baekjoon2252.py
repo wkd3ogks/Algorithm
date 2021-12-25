@@ -3,17 +3,10 @@
 # 앞사람 수 말고 뒷사람 수를 저장하면?
 import sys
 n, m = map(int, sys.stdin.readline().split())
-memo = [1 for i in range(n + 1)]
-memo2 = [[0, i] for i in range(n + 1)]
+memo = [0 for i in range(n + 1)]
 again = []
 for _ in range(m):
     a, b = map(int, sys.stdin.readline().split()) 
-    memo[a] += 1
-    again.append((a, b))
-for a, b in again: 
-    memo2[a][0] += memo[b]
-memo2.sort(reverse=True)
-for val, index in memo2:
-    if index == 0:
-        continue
-    print(index, end=' ')
+    if memo[a] < memo[b] + 1:
+        memo[a] = memo[b] + 1
+print(memo)

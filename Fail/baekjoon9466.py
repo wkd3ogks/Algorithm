@@ -1,34 +1,31 @@
 # [Gold 3] 텀 프로젝트
+# Union-Find 문제
+import sys
+sys.setrecursionlimit(10**6)
 
-# 일반화
-# 팀일 경우(처음 시작과 끝이 같을 때)
-# 팀이면 값을 -1로 변경해두자
-from typing import SupportsRound
-
-
+def dfs(now, cnt, start):
+    if students[now] == -1:
+        return 0
+    if start == students[now] - 1:
+        return cnt 
+    elif now == students[now] - 1:
+        students[now] = -1
+        return 1 
+    else:
+        if students[now] in studentList:
+            studentList.remove(students[now])
+        cnt += 1
+        return dfs(students[now] - 1, cnt, start)
 def solve():
+    total = 0
+    while studentList:
+        student = studentList.pop() - 1
+        total += dfs(student, 1, student)
+    print(n - total)
+
+t = int(input())
+for _ in range(t):
     n = int(input())
     students = list(map(int, input().split()))
-    studentQueue = [i for i in range(n)]
-    while studentQueue:
-        check = studentQueue.pop(0)
-        start = check
-        tail = students[start] - 1
-        team = set()
-        while check != tail:
-            if tail == -1:
-                students[start] = 0
-                studentQueue.remove(start)
-                continue
-            if start == tail:
-                for i in team:
-                    # -2 means not a Team 
-                    students[i] = -2
-                continue
-            start = tail
-            tail = students[tail] - 1
-        for i in team:
-            students[i] = 0 
-        
-
-        
+    studentList = set([i for i in range(n, 0, -1)])
+    solve()

@@ -1,33 +1,38 @@
 # [Gold 4] 최소 스패닝 트리
-# 벨만 포드 알고리즘은 뭐였드라?
-# 벨만 포드 알고리즘과 다익스트라의 차이는 
+# 선을 선택한다 생각하지 말고 점을 선택한다 보면 좀 더 쉽다.
 import sys
-from collections import deque
 
-v, e = map(int, sys.stdin.readline().split())
-# visitd .> [0, 0] first : total cost 
-INF = 2147483647
-visited = [[INF, node for _ in range(v)]
-graph = [[] for _ in range(v)]
-visited[0] = 0
-mstEdges = set()
+v, e = map(int, input().split())
+edges = []
 for _ in range(e):
-    a, b, c = map(int, sys.stdin.readline().split())
-    a -= 1
-    b -= 1
-    graph[a].append((b, c))
-    graph[b].append((a, c))
-queue = deque([0])
-while queue:
-    check = False
-    node = queue.popleft()
-    for nxtNode, value in graph[node]:
-        if visited[nxtNode][1] < visited[node][1] + value:
-            visited[nxtNode][1] = visited[node][1] + value
-            mstEdges.add((node, nxtNode, value))
-            if nxtNode not in mstEdges:
-                mstEdges.add((node, nxtNode, value))
-            else:
-                mstEdges.remove((node, nxtNode, value))
-                mstEdges.add((node, nxtNode, value))
+    edges.append(list(map(int, input().split())))
+edges.sort(key=lambda x:x[2])
 
+parent = [i for i in range(v)] #기본 상태
+def getParent(x):
+    if (parent[x] == x):
+         return x;
+    else:
+        return getParent(parent[x])
+
+def unionParent(a, b):
+    a = getParent(a)
+    b = getParent(b)
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
+
+def findParent(a, b):
+    a = getParent(a)
+    b = getParent(b)
+    if a == b:
+        return True
+    else:
+        return False
+total = 0
+for a, b, value in edges:
+    if not findParent(a - 1, b - 1):
+        unionParent(a - 1, b - 1)
+        total += value
+print(total)

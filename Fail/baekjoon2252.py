@@ -1,12 +1,30 @@
 # [Gold 3] 줄 세우기
-# 전체탐색으론 안될것 같고 그럼 결국 버려지는 정보가 없도록 해야하는데 어떻게?
-# 앞사람 수 말고 뒷사람 수를 저장하면?
+# 그래프로 이 문제를 바라보자
+# 위상정렬인데 사이클 체크할 필요가 없는.
 import sys
+from collections import deque
 n, m = map(int, sys.stdin.readline().split())
 memo = [0 for i in range(n + 1)]
-again = []
+graph = [[] for _ in range(n + 1)]
 for _ in range(m):
     a, b = map(int, sys.stdin.readline().split()) 
-    if memo[a] < memo[b] + 1:
-        memo[a] = memo[b] + 1
-print(memo)
+    memo[b] += 1
+    graph[a].append(b)
+queue = deque([])
+for i in range(1, n + 1):
+    if memo[i] == 0:
+        queue.append(i)
+        memo[i] = -1
+def removeEdges(a):
+    rslt = []
+    while graph[a]:
+        b = graph[a].pop()
+        memo[b] -= 1
+        if memo[b] == 0:
+            rslt.append(b)
+    return rslt
+while queue:
+    x = queue.popleft()
+    print(x, end=' ')
+    for i in removeEdges(x):
+        queue.append(i)

@@ -6,44 +6,19 @@
 # 팰린드롬 수 안에 팰린드롬 수가 있다. -> 2 3 2, 1 2 3 2 1
 # 정보를 어떻게 저장할까?
 import sys
-import time
 
-n = int(sys.stdin.readline())
-seq = list(map(int, sys.stdin.readline().split()))
-memo = [[0 for _ in range(n)] for _ in range(n)]
-
+input = sys.stdin.readline
+n = int(input())
+seq = list(map(int, input().split()))
+m = int(input())
+memo = [[0 for _ in range(n)] for __ in range(n)]
+print(memo)
 for i in range(n):
-    left, right = 0, 0
-    check1, check2, check3 = True, True, True
-    while check1 or check2 or check3:
-        if check1 and i + right < n and i - left >= 0:
-            if check1 and seq[i - left] == seq[i + right]:
-                # memo[i + right][i - left] = 1
-                memo[i - left][i + right] = 1
-            else:
-                check1 = False
+    check = [seq[i]] 
+    for j in range(i, n):
+        if j - i == 0:
+            pass
+        elif (j - i) % 2 == 0:
+            pass
         else:
-            check1 = False
-        if check2 and i - left >= 0:
-            if seq[i - left] == seq[i]:
-                memo[i][i - left] = 1
-                # memo[i - left][i] = 1
-            else:
-                check2 = False
-        else:
-            check2 = False
-        if check3 and i + right < n:
-            if seq[i + right] == seq[i]:
-                memo[i][i + right] = 1
-                # memo[i + right][i] = 1
-            else:
-                check3 = False
-        else:
-            check3 = False
-        left += 1
-        right += 1
-m = int(sys.stdin.readline())
-for i in range(m):
-    s, e = map(int, sys.stdin.readline().split())
-    print(memo[s - 1][e - 1])
-
+            pass

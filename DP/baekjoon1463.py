@@ -14,5 +14,4 @@ for i in range(n, 1, -1):
     if i - 1 >= 1:
         if memo[i - 1] > memo[i] + 1:
             memo[i - 1] = memo[i] + 1
-print(memo)
 print(memo[1])

@@ -20,5 +20,5 @@ print(memo)
 for x in range(2, n):
     for i in range(n - x):
         j = i + x
-        memo[j][i]
+        memo[j][i] = 
 

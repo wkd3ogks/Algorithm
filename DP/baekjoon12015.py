@@ -1,5 +1,6 @@
 # [Gold 2] 가장 긴 증가하는 부분 수열 2
 # 큰 값을 작은 값으로 바꿔도 항상 개수는 같다.
+# 바꿔줘도 끼치는 영향이 없다.
 import sys
 input = sys.stdin.readline
 n = int(input())

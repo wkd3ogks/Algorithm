@@ -1,7 +1,4 @@
 # [Silver 1] 연산자 끼워넣기
-from lib2to3.pgen2.grammar import opmap_raw
-
-
 n = int(input())
 seq = list(map(int, input().split()))[::-1]
 operator = list(map(int, input().split())) # + - * //

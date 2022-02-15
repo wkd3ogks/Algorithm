@@ -1,8 +1,5 @@
 # [Silver 1] 호텔
 
-from argon2 import PasswordHasher
-
-
 reqC, cityN = map(int, input().split())
 marketing = []
 for _ in range(cityN):

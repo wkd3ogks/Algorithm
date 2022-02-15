@@ -3,7 +3,6 @@ delta = [(1,0),(0,1),(-1,0),(0,-1),(1,1),(1,-1),(-1,-1),(-1,1)]
 def solve(queue, board, visited):
     cnt = 0
     for start in queue:
-        print("Hi", start)
         realq = [start]
         if visited[start[1]][start[0]] == False:
             cnt += 1
@@ -21,7 +20,6 @@ def solve(queue, board, visited):
 w, h = map(int, input().split())
 while w != 0 and h != 0:
     visited = [[False for _ in range(w)] for __ in range(h)]
-    print(visited)
     board = []
     queue = []
     for y in range(h):

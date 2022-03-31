@@ -16,8 +16,7 @@ for PersonIndex in range(allPerson):
             maxHappy[PersonIndex][sumLossHealth] = max(maxHappy[PersonIndex - 1][sumLossHealth - lossHealth[PersonIndex]] + gainHappy[PersonIndex], maxHappy[PersonIndex - 1][sumLossHealth])
         else:
             maxHappy[PersonIndex][sumLossHealth] = maxHappy[PersonIndex - 1][sumLossHealth]
-
-
+    
 answer = -1
 for y in range(allPerson):
     if answer < maxHappy[y][99]:

@@ -11,9 +11,10 @@ def lotto(now, cnt, rslt):
             print(i, end=' ')
         print()
         return
-    if now + 1 >= k:
+    if now >= k:
         return
     for i in range(now, k):
-        if rslt[-1] != arr[i]:
-            rslt.append(lotto[now])
-            lotto()
+        rslt.append(arr[i])
+        lotto(i + 1, cnt + 1, rslt)
+        rslt.pop()
+lotto(0, 0, [])
